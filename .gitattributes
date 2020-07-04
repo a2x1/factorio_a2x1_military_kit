@@ -1,0 +1,5 @@
+# CRLF should always be replaced by LF
+* -crlf
+
+# Set the default behavior for line endings
+* text=lf

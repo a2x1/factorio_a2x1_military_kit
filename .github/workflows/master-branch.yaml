@@ -1,0 +1,56 @@
+name: MasterBranch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: BUILD job
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set ENVIRONMENT variable NAME
+        run: echo ::set-env name=NAME::$(jq .name info.json -r)
+
+      - name: Set ENVIRONMENT variable VERSION
+        run: echo ::set-env name=VERSION::$(jq .version info.json -r)
+
+      - name: Run Factorio Mod tests
+        run: make tests
+
+      # # Disabling until I figure out how to deal with these warnings
+      # # Total: 55 warnings / 0 errors in 10 files
+      # - name: Factorio Mod luacheck
+      #   uses: Roang-zero1/factorio-mod-luacheck@v1.1.0
+      #   with:
+      #     luacheckrc_url: https://raw.githubusercontent.com/Nexela/Factorio-luacheckrc/master/.luacheckrc
+
+      - name: Create Factorio Mod ZIP Archive
+        run: make zip
+
+      - name: Create Github Release Object
+        id: actions_create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_name: ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          # body: |
+          #   Body Placeholder
+
+      - name: Upload Github Release Archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.actions_create_release.outputs.upload_url }}
+          asset_name: ${{ env.NAME }}_${{ env.VERSION }}.zip
+          asset_path: ${{ env.NAME }}_${{ env.VERSION }}.zip
+          asset_content_type: application/octet-stream

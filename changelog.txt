@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.18.01
+Date: 2020.07.04
+  Features:
+    - Added configuration for Gun Damage, Projectile Damage, Artillery Projectile Damage
+    - Added configuration for Gun Turret Range
+    - Electric Turret Damage and Range from Modular Turrets

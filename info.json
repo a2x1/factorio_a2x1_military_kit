@@ -1,0 +1,12 @@
+{
+  "name": "a2x1_military_kit",
+  "title": "A2x1 Military Kit",
+  "author": "Inguss",
+  "contact": "Inguss.Neilands@gmail.com",
+  "version": "0.18.01",
+  "factorio_version": "0.18",
+  "dependencies": [
+    "base >= 0.18.0",
+    "? scattergun_turret >= 5.3.0"
+  ]
+}
