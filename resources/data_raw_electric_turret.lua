@@ -38,6 +38,16 @@ function __data__data_raw_electric_turret(data, settings)
       v.attack_parameters.range = (v.attack_parameters.range or 1) / 100 * (settings.startup[settings_key_prefix .. "range"].value or 100)
       v.prepare_range = v.attack_parameters.range + 1
 
+      if v.attack_parameters.ammo_type then
+        if v.attack_parameters.ammo_type.action then
+          if v.attack_parameters.ammo_type.action.action_delivery then
+            if v.attack_parameters.ammo_type.action.action_delivery.max_length then
+              v.attack_parameters.ammo_type.action.action_delivery.max_length = v.attack_parameters.range
+            end
+          end
+        end
+      end
+
       -- damage_modifier
       v.attack_parameters.damage_modifier = (v.attack_parameters.damage_modifier or 1) / 100 * (settings.startup[settings_key_prefix .. "damage_modifier"].value or 100)
       -- v.attack_parameters.damage_modifier = 100.23

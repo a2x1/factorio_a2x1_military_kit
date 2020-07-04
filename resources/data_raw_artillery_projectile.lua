@@ -9,7 +9,7 @@ function __settings_startup__data_raw_artillery_projectile(data, order)
         type = "int-setting",
         name = settings_key_prefix .. "damage",
         setting_type = "startup",
-        default_value = 500,
+        default_value = 1000,
         maximum_value = 100000,
         minimum_value = 1,
         localised_name = "Artillery Projectile Damage",
