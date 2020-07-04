@@ -1,6 +1,6 @@
-local settings_key_prefix = "a2x1_config_bits" .. "-" .. "data_raw_ammo_turret" .. "-"
+local settings_key_prefix = "a2x1_config_bits" .. "-" .. "data_raw_fluid_turret" .. "-"
 
-function __settings_startup__data_raw_ammo_turret(data, order)
+function __settings_startup__data_raw_fluid_turret(data, order)
   return data:extend(
     {
       {
@@ -10,7 +10,7 @@ function __settings_startup__data_raw_ammo_turret(data, order)
         default_value = 200,
         maximum_value = 100000,
         minimum_value = 1,
-        localised_name = "Gun Turret Range",
+        localised_name = "Flamethrower Turret Range",
         localised_description = "1% Smaller - 100% Default - 100000% Larger",
         order = tonumber(order .. "1")
       },
@@ -21,7 +21,7 @@ function __settings_startup__data_raw_ammo_turret(data, order)
         default_value = 10000,
         maximum_value = 100000,
         minimum_value = 1,
-        localised_name = "Gun Turret Damage Modifier",
+        localised_name = "Flamethrower Turret Damage Modifier",
         localised_description = "1% Smaller - 100% Default - 100000% Larger",
         order = tonumber(order .. "3")
       }
@@ -29,8 +29,8 @@ function __settings_startup__data_raw_ammo_turret(data, order)
   )
 end
 
-function __data__data_raw_ammo_turret(data, settings)
-  for k, v in pairs(data.raw["ammo-turret"]) do
+function __data__data_raw_fluid_turret(data, settings)
+  for k, v in pairs(data.raw["fluid-turret"]) do
     if v.attack_parameters then
       --
 

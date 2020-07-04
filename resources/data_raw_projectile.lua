@@ -34,6 +34,43 @@ function __data__data_raw_projectile(data, settings)
     if type(v) == "table" and v.piercing_damage then
       v.piercing_damage = (piercing_damage or 1) / 100 * (settings.startup[settings_key_prefix .. "damage"].value or 100)
     end
+
+    if settings.startup["a2x1_config_bits" .. "-" .. "dual_damage"].value then
+      if v.action then
+        if v.action.action_delivery and v.action.action_delivery.target_effects then
+          update_target_effects(v.action.action_delivery.target_effects)
+        else
+          for k1, v1 in pairs(v.action) do
+            if type(v1) == "table" and v1.action_delivery and v1.action_delivery.target_effects then
+              update_target_effects(v1.action_delivery.target_effects)
+            end
+          end
+        end
+      end
+    end
+
     --
+  end
+end
+
+function update_target_effects(target_effects)
+  local damage_amount, damage_type
+  local count = 0
+
+  for k, v in pairs(target_effects) do
+    if type(v) == "table" and v.damage then
+      damage_amount = v.damage.amount
+      damage_type = v.damage.type
+      count = count + 1
+    end
+  end
+
+  if count == 1 then
+    if damage_type == "explosion" then
+      table.insert(target_effects, {type = "damage", damage = {amount = damage_amount, type = "physical"}})
+    end
+    if damage_type == "physical" then
+      table.insert(target_effects, {type = "damage", damage = {amount = damage_amount, type = "impact"}})
+    end
   end
 end

@@ -1,3 +1,6 @@
 Military Kit
 
-Configurable Daamage and Turret Ranges
+Configuration for Gun Turret Range and Damage, Flamethrower Range and Damage, Electric Laser Turret Range and Damage,
+Rocket Projectile Damage, Artillery Projectile Damage,
+Optional Second Damage Type for all Damage Sources,
+Configurable Modular Turrets Electric Laser Turret Range and Damage
