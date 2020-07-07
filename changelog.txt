@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.18.1
-Date: 2020.07.04
+Date: 2020.07.07
   Features:
     - Added configuration for Gun Turret Range and Damage
     - Added configuration for Flamethrower Range and Damage
